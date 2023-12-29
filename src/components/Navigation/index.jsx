@@ -1,0 +1,37 @@
+import { Container, Nav, Navbar, Stack } from 'react-bootstrap'
+
+import { IoMdCart } from 'react-icons/io'
+import { IoSearchOutline } from 'react-icons/io5'
+import { TiUser } from 'react-icons/ti'
+function Navigation() {
+  return (
+    <Navbar expand="lg" className="bg-body-tertiary ecom-nav">
+      <Container>
+        <Navbar.Brand href="#home">Ecom-Store</Navbar.Brand>
+
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="mx-auto">
+            <Nav.Link href="#home">Home</Nav.Link>
+            <Nav.Link href="#link">Shop</Nav.Link>
+            <Nav.Link href="#link">Contact</Nav.Link>
+          </Nav>
+        </Navbar.Collapse>
+
+        <Stack className="icons" direction="horizontal">
+          <div className="p-2">
+            <IoSearchOutline />
+          </div>
+          <div className="p-2">
+            <IoMdCart />
+          </div>
+          <div className="p-2">
+            <TiUser />
+          </div>
+        </Stack>
+      </Container>
+    </Navbar>
+  )
+}
+
+export default Navigation
