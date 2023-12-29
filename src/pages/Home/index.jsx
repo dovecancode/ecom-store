@@ -1,5 +1,11 @@
+import NewArrivalsSection from '../../components/NewArrivalsSection'
+
 function Home() {
-  return <div>Home</div>
+  return (
+    <>
+      <NewArrivalsSection />
+    </>
+  )
 }
 
 export default Home

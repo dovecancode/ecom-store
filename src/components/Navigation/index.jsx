@@ -7,7 +7,7 @@ function Navigation() {
   return (
     <Navbar expand="lg" className="bg-body-tertiary ecom-nav">
       <Container>
-        <Navbar.Brand href="#home">Ecom-Store</Navbar.Brand>
+        <Navbar.Brand href="/">Ecom-Store</Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
