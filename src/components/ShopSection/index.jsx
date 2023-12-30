@@ -7,12 +7,12 @@ function ShopSection() {
     <section className="shop-section">
       <Container>
         <Row className="mt-5">
-          <Col lg={9}>
+          <Col lg={9} className="order-2 order-lg-1">
             <Row>
               <ShopProducts />
             </Row>
           </Col>
-          <Col sm={3}>
+          <Col lg={3} sm={12} className="order-1 order-lg-2">
             <Row>
               <ShopSidebar />
             </Row>

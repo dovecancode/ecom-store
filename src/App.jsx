@@ -1,7 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navigation from './components/Navigation'
-import { Home, Shop } from './pages'
+import { Home, Shop, SingleProduct } from './pages'
 // import PageNotFound from './pages/PageNotFound'
 
 BrowserRouter
@@ -13,6 +13,7 @@ function App() {
       <Routes>
         <Route index="*" element={<Home />} />
         <Route path="shop" element={<Shop />} />
+        <Route path="product/:id" element={<SingleProduct />} />
         {/* <Route path="*" element={<PageNotFound />} /> */}
       </Routes>
     </BrowserRouter>
