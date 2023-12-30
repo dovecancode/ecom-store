@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types'
 import { createContext, useContext, useEffect, useState } from 'react'
 
 import productServices from '../services/productServices'
@@ -6,7 +7,7 @@ const ProductContext = createContext()
 
 function ProductProvider({ children }) {
   const [products, setProducts] = useState([])
-  const [catName, setCatNames] = useState([])
+
   const [categories, setCategories] = useState([])
 
   const [status, setStatus] = useState('idle')
@@ -64,6 +65,10 @@ function ProductProvider({ children }) {
 
 function useProduct() {
   return useContext(ProductContext)
+}
+
+ProductProvider.propTypes = {
+  children: PropTypes.element,
 }
 
 export { ProductProvider, useProduct }
