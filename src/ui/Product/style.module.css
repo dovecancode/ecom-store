@@ -13,6 +13,10 @@
   bottom: 0;
 }
 
+.featured-image {
+  width: 10rem;
+}
+
 @media (width >= 60rem) {
   .featured-image {
     height: 15rem;

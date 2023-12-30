@@ -5,9 +5,13 @@ class ProductServices {
     baseURL: 'https://fakestoreapi.com',
   })
 
-  async getProducts(limit) {
-    const res = await this.#httpInstance.get(`/products?limit=${limit}`)
+  async getAllShopProducts() {
+    const res = await this.#httpInstance.get(`/products`)
+    return res.data
+  }
 
+  async getCategoryTitle() {
+    const res = await this.#httpInstance.get(`/products/categories`)
     return res.data
   }
 }

@@ -1,13 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import Navigation from './components/Navigation'
-import Home from './pages/Home'
+import { Home, Shop } from './pages'
+// import PageNotFound from './pages/PageNotFound'
+
+BrowserRouter
 
 function App() {
   return (
-    <>
+    <BrowserRouter>
       <Navigation />
-      <Home />
-    </>
+      <Routes>
+        <Route index="*" element={<Home />} />
+        <Route path="shop" element={<Shop />} />
+        {/* <Route path="*" element={<PageNotFound />} /> */}
+      </Routes>
+    </BrowserRouter>
   )
 }
 
