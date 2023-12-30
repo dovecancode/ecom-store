@@ -5,7 +5,7 @@ import CategoryList from '../CategoryList'
 function ShopSidebar() {
   const { categories, status, getCategoryProducts } = getCategoryNames()
 
-  const isLoading = status === 'loading'
+  // const isLoading = status === 'loading'
   const error = status === 'error'
 
   function handleClick(catName) {
