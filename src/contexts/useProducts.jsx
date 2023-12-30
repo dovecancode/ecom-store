@@ -1,6 +1,5 @@
-import { createContext, useContext, useEffect, useState } from 'react'
-
 import PropTypes from 'prop-types'
+import { createContext, useContext, useEffect, useState } from 'react'
 
 import productServices from '../services/productServices'
 
@@ -8,6 +7,8 @@ const ProductContext = createContext()
 
 function ProductProvider({ children }) {
   const [products, setProducts] = useState([])
+
+  const [categories, setCategories] = useState([])
 
   const [status, setStatus] = useState('idle')
 
@@ -21,13 +22,42 @@ function ProductProvider({ children }) {
         setStatus('success')
       } catch (error) {
         setStatus('error')
+        console.error(error.message)
       }
     }
     getAllProducts()
   }, [])
 
+  // useEffect(() => {
+  //   async function getCategoryTitle() {
+  //     try {
+  //       const names = await productServices.getCategoryTitle()
+  //       setCatNames(names)
+  //     } catch (error) {
+  //       console.error(error.message)
+  //     }
+  //   }
+  //   getCategoryTitle()
+  // }, [])
+
+  useEffect(() => {
+    async function getCategories() {
+      setStatus('loading')
+      try {
+        const data = await productServices.getCategories()
+
+        setCategories(data)
+        setStatus('success')
+      } catch (error) {
+        setStatus('error')
+        console.error(error.message)
+      }
+    }
+    getCategories()
+  }, [])
+
   return (
-    <ProductContext.Provider value={{ products, status }}>
+    <ProductContext.Provider value={{ products, categories, status }}>
       {children}
     </ProductContext.Provider>
   )
