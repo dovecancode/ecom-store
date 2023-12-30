@@ -5,28 +5,22 @@ class ProductServices {
     baseURL: 'https://fakestoreapi.com',
   })
 
+  async getHomeProducts(limit) {
+    const res = await this.#httpInstance.get(`/products/?limit=${limit}`)
+    return res.data
+  }
+
   async getAllShopProducts() {
     const res = await this.#httpInstance.get(`/products`)
     return res.data
   }
 
-  // async getCategoryTitle() {
-  //   const res = await this.#httpInstance.get(`/products/categories`)
-  //   return res.data
-  // }
-
-  // async getCategory(cat) {
-  //   const res = await this.#httpInstance.get(`/products/category/${cat}`)
-  //   return res.data
-  // }
-
-  // calling category names and category products at the same time
+  // calling category names and category products at the same time and created an new object from it
   async getCategories() {
     // call category name first
     const { data: catNames } = await this.#httpInstance.get(
       `/products/categories`
     )
-
     // call specific category in a loop
     const categoryRequests = await catNames.map(async (name) => {
       const categoryData = await this.#httpInstance.get(
@@ -37,6 +31,11 @@ class ProductServices {
     })
 
     return await Promise.all(categoryRequests)
+  }
+
+  async getCategoryProducts(cat) {
+    const res = await this.#httpInstance.get(`/products/category/${cat}`)
+    return res.data
   }
 }
 

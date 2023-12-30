@@ -6,17 +6,32 @@ import productServices from '../services/productServices'
 const ProductContext = createContext()
 
 function ProductProvider({ children }) {
+  const [homeProducts, setHomeProducts] = useState([])
   const [products, setProducts] = useState([])
-
   const [categories, setCategories] = useState([])
 
   const [status, setStatus] = useState('idle')
 
+  useEffect(() => {
+    async function getHomeProducts() {
+      try {
+        setStatus('loading')
+        const data = await productServices.getHomeProducts(8)
+        setHomeProducts(data)
+        setStatus('success')
+      } catch (error) {
+        setStatus('error')
+        console.error(error.message)
+      }
+    }
+    getHomeProducts()
+  }, [])
+
   // get all products
   useEffect(() => {
-    async function getAllProducts() {
-      setStatus('loading')
+    async function getAllShopProducts() {
       try {
+        setStatus('loading')
         const data = await productServices.getAllShopProducts()
         setProducts(data)
         setStatus('success')
@@ -25,27 +40,15 @@ function ProductProvider({ children }) {
         console.error(error.message)
       }
     }
-    getAllProducts()
+    getAllShopProducts()
   }, [])
 
-  // useEffect(() => {
-  //   async function getCategoryTitle() {
-  //     try {
-  //       const names = await productServices.getCategoryTitle()
-  //       setCatNames(names)
-  //     } catch (error) {
-  //       console.error(error.message)
-  //     }
-  //   }
-  //   getCategoryTitle()
-  // }, [])
-
+  //get category names and its total items per category
   useEffect(() => {
     async function getCategories() {
-      setStatus('loading')
       try {
+        setStatus('loading')
         const data = await productServices.getCategories()
-
         setCategories(data)
         setStatus('success')
       } catch (error) {
@@ -56,8 +59,28 @@ function ProductProvider({ children }) {
     getCategories()
   }, [])
 
+  async function getCategoryProducts(catName) {
+    try {
+      setStatus('loading')
+      const data = await productServices.getCategoryProducts(catName)
+      setProducts(data)
+      setStatus('success')
+    } catch (error) {
+      setStatus('error')
+      console.error(error.message)
+    }
+  }
+
   return (
-    <ProductContext.Provider value={{ products, categories, status }}>
+    <ProductContext.Provider
+      value={{
+        homeProducts,
+        products,
+        categories,
+        getCategoryProducts,
+        status,
+      }}
+    >
       {children}
     </ProductContext.Provider>
   )
