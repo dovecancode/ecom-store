@@ -7,6 +7,7 @@ class ProductServices {
 
   async getProducts(limit) {
     const res = await this.#httpInstance.get(`/products?limit=${limit}`)
+
     return res.data
   }
 }

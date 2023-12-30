@@ -5,6 +5,10 @@ import { Row, Stack } from 'react-bootstrap'
 import productServices from '../../services/productServices'
 import Spinner from '../../ui/Spinner'
 
+import styles from './style.module.css'
+
+import { IoMdCart } from 'react-icons/io'
+
 function NewArrivalProducts() {
   const [products, setProducts] = useState([])
 
@@ -47,20 +51,30 @@ function NewArrivalProducts() {
       {products.map((product) => (
         <Stack
           key={product.id}
-          className="col-12 col-sm-6 col-md-6 col-lg-3 my-5 mx-auto"
+          className="col-12 col-sm-6 col-md-6 col-lg-3 my-5 d-flex"
         >
-          <div className="product text-center">
-            <div className="w-75 featured-image mx-auto">
+          <div
+            className={`${styles.product} position-relative overflow-hidden text-center shadow-lg flex-grow-1 py-3`}
+          >
+            <div
+              className={`${styles['featured-image']} w-50 mx-auto d-flex align-items-center`}
+            >
               <img
                 className="img-fluid "
                 src={product.image}
                 alt={product.title}
               />
             </div>
-            <h2 className="h5 mt-5" title={product.title}>
-              {product.title.substring(0, 20) + '...'}
-            </h2>
-            <p className="lead">${product.price}</p>
+
+            <div className="product-info mt-5">
+              <h2 className="h5" title={product.title}>
+                {product.title.substring(0, 20) + '...'}
+              </h2>
+              <p className="lead">${product.price}</p>
+            </div>
+            <div className={`${styles['add-to-cart-btn']} position-absolute`}>
+              <IoMdCart size={30} color="#fff" />
+            </div>
           </div>
         </Stack>
       ))}
