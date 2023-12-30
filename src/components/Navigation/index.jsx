@@ -20,13 +20,13 @@ function Navigation() {
 
         <Stack className="icons" direction="horizontal">
           <div className="p-2">
-            <IoSearchOutline />
+            <IoSearchOutline size={20} />
           </div>
           <div className="p-2">
-            <IoMdCart />
+            <IoMdCart size={20} />
           </div>
           <div className="p-2">
-            <TiUser />
+            <TiUser size={20} />
           </div>
         </Stack>
       </Container>
