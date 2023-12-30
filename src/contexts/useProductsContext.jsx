@@ -1,5 +1,11 @@
 import PropTypes from 'prop-types'
-import { createContext, useContext, useEffect, useState } from 'react'
+import {
+  createContext,
+  useCallback,
+  useContext,
+  useEffect,
+  useState,
+} from 'react'
 
 import productServices from '../services/productServices'
 
@@ -9,6 +15,7 @@ function ProductProvider({ children }) {
   const [homeProducts, setHomeProducts] = useState([])
   const [products, setProducts] = useState([])
   const [categories, setCategories] = useState([])
+  const [singleProduct, setSingleProduct] = useState({})
 
   const [status, setStatus] = useState('idle')
 
@@ -71,6 +78,18 @@ function ProductProvider({ children }) {
     }
   }
 
+  const getSingleProduct = useCallback(async function getSingleProduct(id) {
+    try {
+      setStatus('loading')
+      const data = await productServices.getSingleProduct(id)
+      setSingleProduct(data)
+      setStatus('success')
+    } catch (error) {
+      setStatus('error')
+      console.error(error.message)
+    }
+  }, [])
+
   return (
     <ProductContext.Provider
       value={{
@@ -78,6 +97,8 @@ function ProductProvider({ children }) {
         products,
         categories,
         getCategoryProducts,
+        getSingleProduct,
+        singleProduct,
         status,
       }}
     >

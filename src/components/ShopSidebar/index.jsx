@@ -31,7 +31,7 @@ function ShopSidebar() {
   return (
     <aside className="sidebar">
       <h2 className="h2 mb-3">Categories</h2>
-      <ListGroup>
+      <ListGroup className="mb-5">
         {categories.map((category) => (
           <CategoryList
             key={category.catName}

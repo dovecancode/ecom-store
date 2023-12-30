@@ -21,6 +21,7 @@ class ProductServices {
     const { data: catNames } = await this.#httpInstance.get(
       `/products/categories`
     )
+
     // call specific category in a loop
     const categoryRequests = await catNames.map(async (name) => {
       const categoryData = await this.#httpInstance.get(
@@ -35,6 +36,11 @@ class ProductServices {
 
   async getCategoryProducts(cat) {
     const res = await this.#httpInstance.get(`/products/category/${cat}`)
+    return res.data
+  }
+
+  async getSingleProduct(id) {
+    const res = await this.#httpInstance.get(`/products/${id}`)
     return res.data
   }
 }
