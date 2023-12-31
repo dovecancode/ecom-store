@@ -17,6 +17,9 @@ function ProductProvider({ children }) {
   const [categories, setCategories] = useState([])
   const [singleProduct, setSingleProduct] = useState({})
 
+  const [cartItems, setCartItems] = useState([])
+  const [quantity, setQuantity] = useState([])
+
   const [status, setStatus] = useState('idle')
 
   useEffect(() => {
@@ -99,6 +102,10 @@ function ProductProvider({ children }) {
         getCategoryProducts,
         getSingleProduct,
         singleProduct,
+        setCartItems,
+        cartItems,
+        setQuantity,
+        quantity,
         status,
       }}
     >

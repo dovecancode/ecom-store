@@ -9,6 +9,11 @@
   cursor: pointer;
 }
 
+.cart-count {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
 .product:hover .add-to-cart-btn {
   bottom: 0;
 }

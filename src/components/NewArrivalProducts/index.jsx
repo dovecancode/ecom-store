@@ -6,7 +6,7 @@ import { useProduct } from '../../contexts/useProductsContext'
 import Product from '../../ui/Product'
 
 function NewArrivalProducts() {
-  let { homeProducts, status } = useProduct()
+  const { homeProducts, status } = useProduct()
 
   const isLoading = status === 'loading'
   const error = status === 'error'
