@@ -3,7 +3,7 @@ import { useProduct } from '../contexts/useProductsContext'
 function useItemCart() {
   const { cartItems, setCartItems } = useProduct()
 
-  const addToCart = (product) => {
+  function addProductToCart(product) {
     // checking if the cartItems has some items in it or it is empty
     const searchArray = cartItems.filter((item) => item.id === product.id)
 
@@ -25,7 +25,19 @@ function useItemCart() {
     }
   }
 
-  return { cartItems, addToCart }
+  function removeProductFromCart(cart) {
+    if (cart.quantity === 1) {
+      setCartItems((prev) => prev.filter((item) => item.id !== cart.id))
+    } else {
+      setCartItems((prev) =>
+        prev.map((item) =>
+          item.id === cart.id ? { ...item, quantity: item.quantity - 1 } : item
+        )
+      )
+    }
+  }
+
+  return { cartItems, addProductToCart, removeProductFromCart }
 }
 
 export default useItemCart

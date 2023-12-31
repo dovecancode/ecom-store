@@ -40,7 +40,7 @@ function SingleProductSection() {
                   <div className="add-cart d-flex gap-3">
                     <InputGroup className="w-50">
                       <InputGroup.Text style={{ cursor: 'pointer' }}>
-                        +
+                        -
                       </InputGroup.Text>
                       <Form.Control
                         className="text-center"
@@ -48,7 +48,7 @@ function SingleProductSection() {
                         aria-label="Amount (to the nearest dollar)"
                       />
                       <InputGroup.Text style={{ cursor: 'pointer' }}>
-                        -
+                        +
                       </InputGroup.Text>
                     </InputGroup>
                     <Button variant="dark" size="sm">

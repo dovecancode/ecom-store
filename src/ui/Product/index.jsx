@@ -8,10 +8,10 @@ import useItemCart from '../../hooks/useItemCart'
 import styles from './style.module.css'
 
 function Product({ product }) {
-  const { addToCart } = useItemCart()
+  const { addProductToCart } = useItemCart()
 
   function handleClick() {
-    addToCart(product)
+    addProductToCart(product)
   }
 
   return (
