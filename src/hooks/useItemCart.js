@@ -1,7 +1,7 @@
 import { useProduct } from '../contexts/useProductsContext'
 
 function useItemCart() {
-  const { cartItems, setCartItems } = useProduct()
+  const { cartItems, setCartItems, setHomeProducts, setProducts } = useProduct()
 
   // function to addtocart and increasing it
   function addProductToCart(product, quantity = 1) {
