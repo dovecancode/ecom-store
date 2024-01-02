@@ -2,13 +2,13 @@ import PropTypes from 'prop-types'
 
 import { IoMdCart } from 'react-icons/io'
 
-import { Button } from 'react-bootstrap'
+import { Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import useItemCart from '../../hooks/useItemCart'
 import styles from './style.module.css'
 
 function Product({ product }) {
-  const { addProductToCart } = useItemCart()
+  const { addProductToCart, cartItems } = useItemCart()
 
   function handleClick() {
     addProductToCart(product)
@@ -31,15 +31,17 @@ function Product({ product }) {
           </h2>
           <p className="lead">${product.price}</p>
         </div>
-        {/* <div
-          className={`${styles['cart-count']} position-absolute`}
-          title="3 of these is in the cart now"
-        >
-          <Badge bg="danger" pill>
-            1
-          </Badge>
-        </div> */}
-        <Button
+        {!!product.quantity && (
+          <div
+            className={`${styles['cart-count']} position-absolute`}
+            title="3 of these is in the cart now"
+          >
+            <Badge bg="danger" pill>
+              {product.quantity}
+            </Badge>
+          </div>
+        )}
+        <div
           className={`${styles['add-to-cart-btn']} position-absolute`}
           onClick={(e) => {
             e.preventDefault()
@@ -47,7 +49,7 @@ function Product({ product }) {
           }}
         >
           <IoMdCart size={30} color="#fff" />
-        </Button>
+        </div>
       </div>
     </Link>
   )
