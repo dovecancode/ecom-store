@@ -3,6 +3,7 @@ import { useProduct } from '../contexts/useProductsContext'
 function useItemCart() {
   const { cartItems, setCartItems } = useProduct()
 
+  // function to addtocart and increasing it
   function addProductToCart(product) {
     // checking if the cartItems has some items in it or it is empty
     const searchArray = cartItems.filter((item) => item.id === product.id)
@@ -25,6 +26,7 @@ function useItemCart() {
     }
   }
 
+  // function to decrease the cart order and eventually delete it when it goes to 0
   function removeProductFromCart(cart) {
     if (cart.quantity === 1) {
       setCartItems((prev) => prev.filter((item) => item.id !== cart.id))
@@ -37,7 +39,17 @@ function useItemCart() {
     }
   }
 
-  return { cartItems, addProductToCart, removeProductFromCart }
+  // delete the from cart when trash icon click
+  function deleteItemFromCart(cart) {
+    setCartItems((prev) => prev.filter((item) => item.id !== cart.id))
+  }
+
+  return {
+    cartItems,
+    addProductToCart,
+    removeProductFromCart,
+    deleteItemFromCart,
+  }
 }
 
 export default useItemCart

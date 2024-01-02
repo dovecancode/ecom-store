@@ -12,15 +12,23 @@ import { useProduct } from '../../contexts/useProductsContext'
 import useItemCart from '../../hooks/useItemCart'
 
 function CartSection() {
-  const { addProductToCart, removeProductFromCart } = useItemCart()
+  const { addProductToCart, removeProductFromCart, deleteItemFromCart } =
+    useItemCart()
   const { cartItems } = useProduct()
 
-  function handleAddCart(cart) {
+  // event to addtocart and increasing it
+  function handleAddToCart(cart) {
     addProductToCart(cart)
   }
 
-  function handleRemoveCart(cart) {
+  // event to decrease the cart order and eventually delete it when it goes to 0
+  function handleRemoveFromCart(cart) {
     removeProductFromCart(cart)
+  }
+
+  // event to delete the item from cart when trash icon click
+  function handleDeleteItem(cart) {
+    deleteItemFromCart(cart)
   }
 
   const itemTotalAmout = cartItems.reduce(
@@ -64,7 +72,7 @@ function CartSection() {
                           <InputGroup>
                             <InputGroup.Text
                               style={{ cursor: 'pointer' }}
-                              onClick={() => handleRemoveCart(cart)}
+                              onClick={() => handleRemoveFromCart(cart)}
                             >
                               -
                             </InputGroup.Text>
@@ -77,7 +85,7 @@ function CartSection() {
                             />
                             <InputGroup.Text
                               style={{ cursor: 'pointer' }}
-                              onClick={() => handleAddCart(cart)}
+                              onClick={() => handleAddToCart(cart)}
                             >
                               +
                             </InputGroup.Text>
@@ -85,7 +93,10 @@ function CartSection() {
                         </td>
                         <td>₱{totalPricePerProduct.toFixed(2)}</td>
                         <td>
-                          <FaRegTrashAlt />
+                          <FaRegTrashAlt
+                            cursor="pointer"
+                            onClick={() => handleDeleteItem(cart)}
+                          />
                         </td>
                       </tr>
                     )
