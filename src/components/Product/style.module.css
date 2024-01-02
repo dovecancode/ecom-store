@@ -1,0 +1,29 @@
+.add-to-cart-btn {
+  background: rgb(22, 1, 1);
+  /* border-radius: 2rem; */
+  border-top-left-radius: 1rem;
+  padding: 0.5rem;
+  bottom: -3rem;
+  right: 0;
+  transition: bottom 0.9s ease;
+  cursor: pointer;
+}
+
+.cart-count {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.product:hover .add-to-cart-btn {
+  bottom: 0;
+}
+
+.featured-image {
+  width: 10rem;
+}
+
+@media (width >= 60rem) {
+  .featured-image {
+    height: 15rem;
+  }
+}
