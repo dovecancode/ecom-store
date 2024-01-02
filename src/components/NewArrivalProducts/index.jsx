@@ -3,7 +3,7 @@ import { Row, Stack } from 'react-bootstrap'
 import Spinner from '../../ui/Spinner'
 
 import { useProduct } from '../../contexts/useProductsContext'
-import Product from '../../ui/Product'
+import Product from '../Product'
 
 function NewArrivalProducts() {
   const { homeProducts, status } = useProduct()

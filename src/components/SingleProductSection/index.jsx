@@ -1,11 +1,14 @@
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
 import { useProduct } from '../../contexts/useProductsContext'
+import useItemCart from '../../hooks/useItemCart'
 import Spinner from '../../ui/Spinner'
 
 function SingleProductSection() {
+  const [orderCount, setOrderCount] = useState(1)
   const { singleProduct, status, getSingleProduct } = useProduct()
+  const { addProductToCart } = useItemCart()
   const { id } = useParams()
 
   useEffect(() => {
@@ -15,6 +18,10 @@ function SingleProductSection() {
   const { title, image, description, price, category } = singleProduct
 
   const isLoading = status === 'loading'
+
+  function handleAddCart() {
+    addProductToCart(singleProduct, orderCount)
+  }
 
   return (
     <section className="single-product">
@@ -37,24 +44,41 @@ function SingleProductSection() {
                     <p className="h3">${price}</p>
                     <p>{description}</p>
                   </div>
+
                   <div className="add-cart d-flex gap-3">
                     <InputGroup className="w-50">
-                      <InputGroup.Text style={{ cursor: 'pointer' }}>
+                      <InputGroup.Text
+                        style={{ cursor: 'pointer' }}
+                        onClick={() =>
+                          setOrderCount((prev) => (prev === 1 ? 1 : prev - 1))
+                        }
+                      >
                         -
                       </InputGroup.Text>
                       <Form.Control
-                        className="text-center"
+                        value={orderCount}
+                        className="num-input text-center"
                         type="number"
                         aria-label="Amount (to the nearest dollar)"
+                        onChange={(e) => setOrderCount(+e.target.value)}
                       />
-                      <InputGroup.Text style={{ cursor: 'pointer' }}>
+                      <InputGroup.Text
+                        style={{ cursor: 'pointer' }}
+                        onClick={() => setOrderCount((prev) => prev + 1)}
+                      >
                         +
                       </InputGroup.Text>
                     </InputGroup>
-                    <Button variant="dark" size="sm">
+                    <Button
+                      type="submit"
+                      variant="dark"
+                      size="sm"
+                      onClick={handleAddCart}
+                    >
                       Add to Cart
                     </Button>
                   </div>
+
                   <p className="lead mt-4">Category: {category}</p>
                 </div>
               </Col>

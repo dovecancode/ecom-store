@@ -1,7 +1,8 @@
 import { Stack } from 'react-bootstrap'
 import { useProduct } from '../../contexts/useProductsContext'
-import Product from '../../ui/Product'
+
 import Spinner from '../../ui/Spinner'
+import Product from '../Product'
 
 function ShopProducts() {
   const { products, status } = useProduct()

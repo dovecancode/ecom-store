@@ -8,6 +8,7 @@ import {
   Table,
 } from 'react-bootstrap'
 import { FaRegTrashAlt } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import { useProduct } from '../../contexts/useProductsContext'
 import useItemCart from '../../hooks/useItemCart'
 
@@ -72,7 +73,11 @@ function CartSection() {
                                 alt={cart.title}
                               />
                             </td>
-                            <td style={{ maxWidth: '10rem' }}>{cart.title}</td>
+                            <td style={{ maxWidth: '10rem' }}>
+                              <Link to={`/product/${cart.id}`}>
+                                {cart.title}
+                              </Link>
+                            </td>
                             <td>₱{cart.price}</td>
                             <td>
                               <InputGroup>
@@ -85,7 +90,7 @@ function CartSection() {
                                 <Form.Control
                                   onChange={() => console.log()}
                                   value={cart.quantity}
-                                  className="text-center"
+                                  className="num-input text-center"
                                   type="number"
                                   aria-label="Amount (to the nearest dollar)"
                                 />
