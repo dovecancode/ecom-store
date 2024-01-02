@@ -42,67 +42,75 @@ function CartSection() {
         <Row className="my-5">
           <Col lg={8}>
             <div className="cart-items">
-              <Table bordered hover responsive>
-                <thead>
-                  <tr>
-                    <th></th>
-                    <th>Product</th>
-                    <th>Price</th>
-                    <th>Quantity</th>
-                    <th>Total</th>
-                    <th></th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {cartItems.map((cart) => {
-                    const totalPricePerProduct = cart.quantity * cart.price
-                    return (
-                      <tr key={cart.id}>
-                        <td className="text-center">
-                          <img
-                            style={{ maxWidth: '5rem', margin: 'auto' }}
-                            className="img-fluid"
-                            src={cart.image}
-                            alt={cart.title}
-                          />
-                        </td>
-                        <td style={{ maxWidth: '10rem' }}>{cart.title}</td>
-                        <td>₱{cart.price}</td>
-                        <td>
-                          <InputGroup>
-                            <InputGroup.Text
-                              style={{ cursor: 'pointer' }}
-                              onClick={() => handleRemoveFromCart(cart)}
-                            >
-                              -
-                            </InputGroup.Text>
-                            <Form.Control
-                              onChange={() => console.log()}
-                              value={cart.quantity}
-                              className="text-center"
-                              type="number"
-                              aria-label="Amount (to the nearest dollar)"
-                            />
-                            <InputGroup.Text
-                              style={{ cursor: 'pointer' }}
-                              onClick={() => handleAddToCart(cart)}
-                            >
-                              +
-                            </InputGroup.Text>
-                          </InputGroup>
-                        </td>
-                        <td>₱{totalPricePerProduct.toFixed(2)}</td>
-                        <td>
-                          <FaRegTrashAlt
-                            cursor="pointer"
-                            onClick={() => handleDeleteItem(cart)}
-                          />
-                        </td>
+              {!cartItems.length ? (
+                <div>
+                  <h1>Your Cart is empty</h1>
+                </div>
+              ) : (
+                <>
+                  <Table bordered hover responsive>
+                    <thead>
+                      <tr>
+                        <th></th>
+                        <th>Product</th>
+                        <th>Price</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                        <th></th>
                       </tr>
-                    )
-                  })}
-                </tbody>
-              </Table>
+                    </thead>
+                    <tbody>
+                      {cartItems.map((cart) => {
+                        const totalPricePerProduct = cart.quantity * cart.price
+                        return (
+                          <tr key={cart.id}>
+                            <td className="text-center">
+                              <img
+                                style={{ maxWidth: '5rem', margin: 'auto' }}
+                                className="img-fluid"
+                                src={cart.image}
+                                alt={cart.title}
+                              />
+                            </td>
+                            <td style={{ maxWidth: '10rem' }}>{cart.title}</td>
+                            <td>₱{cart.price}</td>
+                            <td>
+                              <InputGroup>
+                                <InputGroup.Text
+                                  style={{ cursor: 'pointer' }}
+                                  onClick={() => handleRemoveFromCart(cart)}
+                                >
+                                  -
+                                </InputGroup.Text>
+                                <Form.Control
+                                  onChange={() => console.log()}
+                                  value={cart.quantity}
+                                  className="text-center"
+                                  type="number"
+                                  aria-label="Amount (to the nearest dollar)"
+                                />
+                                <InputGroup.Text
+                                  style={{ cursor: 'pointer' }}
+                                  onClick={() => handleAddToCart(cart)}
+                                >
+                                  +
+                                </InputGroup.Text>
+                              </InputGroup>
+                            </td>
+                            <td>₱{totalPricePerProduct.toFixed(2)}</td>
+                            <td>
+                              <FaRegTrashAlt
+                                cursor="pointer"
+                                onClick={() => handleDeleteItem(cart)}
+                              />
+                            </td>
+                          </tr>
+                        )
+                      })}
+                    </tbody>
+                  </Table>
+                </>
+              )}
             </div>
           </Col>
           <Col lg={4}>
