@@ -44,6 +44,7 @@ function ProductProvider({ children }) {
         setStatus('loading')
         const data = await productServices.getAllShopProducts()
         setProducts(data)
+        setStatus('success')
       } catch (error) {
         setStatus('error')
         console.error(error.message)
@@ -59,6 +60,7 @@ function ProductProvider({ children }) {
         setStatus('loading')
         const data = await productServices.getCategories()
         setCategories(data)
+        setStatus('success')
       } catch (error) {
         setStatus('error')
         console.error(error.message)
@@ -72,6 +74,7 @@ function ProductProvider({ children }) {
       setStatus('loading')
       const data = await productServices.getCategoryProducts(catName)
       setProducts(data)
+      setStatus('success')
     } catch (error) {
       setStatus('error')
       console.error(error.message)
@@ -83,11 +86,24 @@ function ProductProvider({ children }) {
       setStatus('loading')
       const data = await productServices.getSingleProduct(id)
       setSingleProduct(data)
+      setStatus('success')
     } catch (error) {
       setStatus('error')
       console.error(error.message)
     }
   }, [])
+
+  async function getAllShopProducts() {
+    try {
+      setStatus('loading')
+      const data = await productServices.getAllShopProducts()
+      setProducts(data)
+      setStatus('success')
+    } catch (error) {
+      setStatus('error')
+      console.error(error.message)
+    }
+  }
 
   return (
     <ProductContext.Provider
@@ -97,7 +113,7 @@ function ProductProvider({ children }) {
         categories,
         getCategoryProducts,
         getSingleProduct,
-
+        getAllShopProducts,
         singleProduct,
         setCartItems,
         cartItems,
