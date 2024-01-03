@@ -31,16 +31,22 @@ function Product({ product }) {
           </h2>
           <p className="lead">${product.price}</p>
         </div>
-        {!!product.quantity && (
-          <div
-            className={`${styles['cart-count']} position-absolute`}
-            title="3 of these is in the cart now"
-          >
-            <Badge bg="danger" pill>
-              {product.quantity}
-            </Badge>
-          </div>
-        )}
+        {!!cartItems.length &&
+          cartItems.map((item) =>
+            item.id === product.id ? (
+              <div
+                key={`cart-${item.id}`}
+                className={`${styles['cart-count']} position-absolute`}
+                title="3 of these is in the cart now"
+              >
+                <Badge bg="danger" pill>
+                  {item.quantity}
+                </Badge>
+              </div>
+            ) : (
+              ''
+            )
+          )}
         <div
           className={`${styles['add-to-cart-btn']} position-absolute`}
           onClick={(e) => {
