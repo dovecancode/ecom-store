@@ -6,13 +6,11 @@ function StarRating({ rating }) {
 
   return (
     <>
-      {starCount.map((star, idx) =>
+      {starCount.map((_, idx) =>
         Math.round(rating.rate) >= idx + 1 ? (
-          <>
-            <FaStar key={`star${star}`} color="rgb(250, 175, 0)" />
-          </>
+          <FaStar key={`star-${idx}`} color="rgb(250, 175, 0)" />
         ) : (
-          <FaRegStar key={`star${star}`} />
+          <FaRegStar key={`star-${idx}`} />
         )
       )}
     </>

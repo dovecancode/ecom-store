@@ -1,15 +1,25 @@
+import { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
 import { useProduct as getCategoryNames } from '../../contexts/useProductsContext'
 import CategoryList from '../CategoryList'
 
 function ShopSidebar() {
   const { categories, status, getCategoryProducts } = getCategoryNames()
+  const [active, setActive] = useState(-1)
+
+  // const newCategory = [
+  //   {
+  //     catName: 'all',
+  //   },
+  //   ...categories,
+  // ]
 
   // const isLoading = status === 'loading'
   const error = status === 'error'
 
-  function handleClick(catName) {
+  function handleClick(catName, idx) {
     getCategoryProducts(catName)
+    setActive(idx)
   }
 
   if (error) {
@@ -20,23 +30,18 @@ function ShopSidebar() {
     )
   }
 
-  // if (isLoading) {
-  //   return (
-  //     <div className="d-flex justify-content-center h-100">
-  //       <Spinner animation="grow" aria-hidden="true" role="status" />
-  //     </div>
-  //   )
-  // }
-
   return (
     <aside className="sidebar">
       <h2 className="h2 mb-3">Categories</h2>
       <ListGroup className="mb-5">
-        {categories.map((category) => (
+        {categories.map((category, idx) => (
           <CategoryList
             key={category.catName}
             {...category}
-            onSelectCategory={handleClick}
+            isActive={active === idx}
+            onSelectCategory={() => {
+              handleClick(category.catName, idx)
+            }}
           />
         ))}
       </ListGroup>

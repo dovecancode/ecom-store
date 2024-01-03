@@ -27,7 +27,6 @@ function ProductProvider({ children }) {
       try {
         setStatus('loading')
         const data = await productServices.getHomeProducts(8)
-
         setHomeProducts(data)
         setStatus('success')
       } catch (error) {
@@ -44,10 +43,7 @@ function ProductProvider({ children }) {
       try {
         setStatus('loading')
         const data = await productServices.getAllShopProducts()
-
         setProducts(data)
-        // setProducts(data)
-        setStatus('success')
       } catch (error) {
         setStatus('error')
         console.error(error.message)
@@ -63,7 +59,6 @@ function ProductProvider({ children }) {
         setStatus('loading')
         const data = await productServices.getCategories()
         setCategories(data)
-        setStatus('success')
       } catch (error) {
         setStatus('error')
         console.error(error.message)
@@ -77,7 +72,6 @@ function ProductProvider({ children }) {
       setStatus('loading')
       const data = await productServices.getCategoryProducts(catName)
       setProducts(data)
-      setStatus('success')
     } catch (error) {
       setStatus('error')
       console.error(error.message)
@@ -89,7 +83,6 @@ function ProductProvider({ children }) {
       setStatus('loading')
       const data = await productServices.getSingleProduct(id)
       setSingleProduct(data)
-      setStatus('success')
     } catch (error) {
       setStatus('error')
       console.error(error.message)
@@ -104,6 +97,7 @@ function ProductProvider({ children }) {
         categories,
         getCategoryProducts,
         getSingleProduct,
+
         singleProduct,
         setCartItems,
         cartItems,
