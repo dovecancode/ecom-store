@@ -4,21 +4,26 @@ import { useProduct as getCategoryNames } from '../../contexts/useProductsContex
 import CategoryList from '../CategoryList'
 
 function ShopSidebar() {
-  const { categories, status, getCategoryProducts } = getCategoryNames()
+  const { categories, status, getCategoryProducts, getAllShopProducts } =
+    getCategoryNames()
   const [active, setActive] = useState(-1)
 
-  // const newCategory = [
-  //   {
-  //     catName: 'all',
-  //   },
-  //   ...categories,
-  // ]
+  const newCategory = [
+    {
+      catName: 'all',
+    },
+    ...categories,
+  ]
 
-  // const isLoading = status === 'loading'
   const error = status === 'error'
 
   function handleClick(catName, idx) {
-    getCategoryProducts(catName)
+    if (catName === 'all') {
+      getAllShopProducts()
+    } else {
+      getCategoryProducts(catName)
+    }
+
     setActive(idx)
   }
 
@@ -34,7 +39,7 @@ function ShopSidebar() {
     <aside className="sidebar">
       <h2 className="h2 mb-3">Categories</h2>
       <ListGroup className="mb-5">
-        {categories.map((category, idx) => (
+        {newCategory.map((category, idx) => (
           <CategoryList
             key={category.catName}
             {...category}
