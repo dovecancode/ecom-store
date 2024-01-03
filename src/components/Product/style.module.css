@@ -3,7 +3,8 @@
   /* border-radius: 2rem; */
   border-top-left-radius: 1rem;
   padding: 0.5rem;
-  bottom: -3rem;
+  /* bottom is set to zero whenever viewing on the phone so cart icon wont hide */
+  bottom: 0;
   right: 0;
   transition: bottom 0.9s ease;
   cursor: pointer;
@@ -25,5 +26,9 @@
 @media (width >= 60rem) {
   .featured-image {
     height: 15rem;
+  }
+
+  .add-to-cart-btn {
+    bottom: -3rem;
   }
 }
