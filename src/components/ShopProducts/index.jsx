@@ -27,7 +27,7 @@ function ShopProducts() {
   return (
     <>
       {products.map((product) => (
-        <Stack key={product.id} className="col-12 col-lg-4 mb-4">
+        <Stack key={product.id} className="shop-product col-12 col-lg-4 mb-4">
           <Product product={product} />
         </Stack>
       ))}
