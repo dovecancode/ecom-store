@@ -5,6 +5,7 @@ import { IoMdCart } from 'react-icons/io'
 import { Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import useItemCart from '../../hooks/useItemCart'
+import StarRating from '../StarRating'
 import styles from './style.module.css'
 
 function Product({ product }) {
@@ -29,6 +30,7 @@ function Product({ product }) {
           <h2 className="h5" title={product.title}>
             {product.title.substring(0, 20) + '...'}
           </h2>
+          <StarRating rating={product.rating} />
           <p className="lead">${product.price}</p>
         </div>
         {!!cartItems.length &&
