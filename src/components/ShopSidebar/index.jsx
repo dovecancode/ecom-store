@@ -18,11 +18,7 @@ function ShopSidebar() {
   const error = status === 'error'
 
   function handleClick(catName, idx) {
-    if (catName === 'all') {
-      getAllShopProducts()
-    } else {
-      getCategoryProducts(catName)
-    }
+    catName === 'all' ? getAllShopProducts() : getCategoryProducts(catName)
 
     setActive(idx)
   }
