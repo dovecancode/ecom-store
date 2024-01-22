@@ -9,7 +9,7 @@ import {
 } from 'react-bootstrap'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useProduct } from '../../contexts/useProductsContext'
+import { useProduct } from '../../contexts/ProductsContext'
 import useItemCart from '../../hooks/useItemCart'
 
 function CartSection() {

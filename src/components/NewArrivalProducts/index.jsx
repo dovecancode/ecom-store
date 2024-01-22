@@ -2,7 +2,7 @@ import { Row, Stack } from 'react-bootstrap'
 
 import Spinner from '../../ui/Spinner'
 
-import { useProduct } from '../../contexts/useProductsContext'
+import { useProduct } from '../../contexts/ProductsContext'
 import Product from '../Product'
 
 function NewArrivalProducts() {
