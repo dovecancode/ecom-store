@@ -1,5 +1,5 @@
 import { Stack } from 'react-bootstrap'
-import { useProduct } from '../../contexts/useProductsContext'
+import { useProduct } from '../../contexts/ProductsContext'
 
 import Spinner from '../../ui/Spinner'
 import Product from '../Product'

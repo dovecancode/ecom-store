@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
-import { useProduct as getCategoryNames } from '../../contexts/useProductsContext'
+import { useProduct as getCategoryNames } from '../../contexts/ProductsContext'
 import CategoryList from '../CategoryList'
 
 function ShopSidebar() {

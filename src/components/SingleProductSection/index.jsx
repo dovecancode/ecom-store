@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
 import { useParams } from 'react-router-dom'
-import { useProduct } from '../../contexts/useProductsContext'
+import { useProduct } from '../../contexts/ProductsContext'
 import useItemCart from '../../hooks/useItemCart'
 import Spinner from '../../ui/Spinner'
 

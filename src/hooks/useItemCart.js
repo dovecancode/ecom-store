@@ -1,4 +1,4 @@
-import { useProduct } from '../contexts/useProductsContext'
+import { useProduct } from '../contexts/ProductsContext'
 
 function useItemCart() {
   const { cartItems, setCartItems } = useProduct()
