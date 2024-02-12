@@ -1,21 +1,27 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Navigation from './components/Navigation'
-import { Cart, Home, Shop, SingleProduct } from './pages'
+import { Outlet } from 'react-router-dom'
 // import PageNotFound from './pages/PageNotFound'
+
+import Navigation from './components/Navigation'
 
 function App() {
   return (
-    <BrowserRouter>
+    <>
       <Navigation />
-      <Routes>
-        <Route index="*" element={<Home />} />
-        <Route path="shop" element={<Shop />} />
-        <Route path="cart" element={<Cart />} />
-        <Route path="product/:id" element={<SingleProduct />} />
-        {/* <Route path="*" element={<PageNotFound />} /> */}
-      </Routes>
-    </BrowserRouter>
+      <main>
+        <Outlet />
+      </main>
+    </>
+    // <BrowserRouter>
+    //
+    //   <Routes>
+    //     <Route index="*" element={<Home />} />
+    //     <Route path="shop" element={<Shop />} />
+    //     <Route path="cart" element={<Cart />} />
+    //     <Route path="product/:id" element={<SingleProduct />} />
+    //     {/* <Route path="*" element={<PageNotFound />} /> */}
+    //   </Routes>
+    // </BrowserRouter>
   )
 }
 
