@@ -1,6 +1,6 @@
 import { Stack } from 'react-bootstrap'
-import { useProduct } from '../../contexts/ProductsContext'
 
+import { useProduct } from '../../contexts/ProductsContext'
 import Spinner from '../../ui/Spinner'
 import Product from '../Product'
 
@@ -26,7 +26,7 @@ function ShopProducts() {
   }
   return (
     <>
-      {products.map((product) => (
+      {products?.map((product) => (
         <Stack key={product.id} className="shop-product col-12 col-lg-4 mb-4">
           <Product product={product} />
         </Stack>

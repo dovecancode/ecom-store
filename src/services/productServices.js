@@ -1,32 +1,24 @@
-import axios from 'axios'
+import axios from './axios'
 
 class ProductServices {
-  #httpInstance = axios.create({
-    baseURL: 'https://fakestoreapi.com',
-  })
-
   async getHomeProducts(limit) {
-    const res = await this.#httpInstance.get(`/products/?limit=${limit}`)
-    return res.data
+    const res = await axios.get(`/products/?limit=${limit}`)
+    return res
   }
 
   async getAllShopProducts() {
-    const res = await this.#httpInstance.get(`/products`)
-    return res.data
+    const res = await axios.get(`/products`)
+    return res
   }
 
   // calling category names and category products at the same time and created an new object from it
   async getCategories() {
     // call category name first
-    const { data: catNames } = await this.#httpInstance.get(
-      `/products/categories`
-    )
+    const { data: catNames } = await axios.get(`/products/categories`)
 
     // call specific category in a loop
     const categoryRequests = await catNames.map(async (name) => {
-      const categoryData = await this.#httpInstance.get(
-        `/products/category/${name}`
-      )
+      const categoryData = await axios.get(`/products/category/${name}`)
       // created an new object from this api call {catname, catLength}
       return { catName: name, catLength: categoryData.data.length }
     })
@@ -35,13 +27,13 @@ class ProductServices {
   }
 
   async getCategoryProducts(cat) {
-    const res = await this.#httpInstance.get(`/products/category/${cat}`)
-    return res.data
+    const res = await axios.get(`/products/category/${cat}`)
+    return res
   }
 
   async getSingleProduct(id) {
-    const res = await this.#httpInstance.get(`/products/${id}`)
-    return res.data
+    const res = await axios.get(`/products/${id}`)
+    return res
   }
 }
 
