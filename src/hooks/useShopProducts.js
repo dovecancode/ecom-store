@@ -8,26 +8,25 @@ function useShopProducts() {
   const [status, setStatus] = useState('idle')
 
   useEffect(() => {
-    fetchData()
-  }, [])
-
-  async function fetchData() {
-    setStatus('loading')
-    try {
-      const res = await productServices.getAllShopProducts()
-      setProducts(res.data)
-      setStatus('success')
-    } catch (error) {
-      console.error('Error fetching products ', error.response)
-      setStatus('error')
+    async function fetchData() {
+      setStatus('loading')
+      try {
+        const res = await productServices.getAllShopProducts()
+        setProducts(res.data)
+        setStatus('success')
+      } catch (error) {
+        console.error('Error fetching products ', error.response)
+        setStatus('error')
+      }
     }
-  }
+    fetchData()
+  }, [setProducts])
 
   async function getAllShopProducts() {
     try {
       setStatus('loading')
-      const data = await productServices.getAllShopProducts()
-      setProducts(data)
+      const res = await productServices.getAllShopProducts()
+      setProducts(res.data)
       setStatus('success')
     } catch (error) {
       setStatus('error')

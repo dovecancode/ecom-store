@@ -10,13 +10,12 @@ function ShopSidebar() {
   // const { categories, status, getCategoryProducts, getAllShopProducts } =
   //   getCategoryNames()
 
-  const { getAllShopProducts, status: productStat } = useShopProducts()
+  const { getAllShopProducts } = useShopProducts()
 
   const { catNames, status: catnamesStat, getCategoryProducts } = useCategory()
 
   const isLoading = catnamesStat === 'loading'
-  const isProductLoading = productStat === 'loading'
-  // const error = status === 'error'
+  const isError = catnamesStat === 'error'
 
   const newCategory = [
     {
@@ -25,13 +24,15 @@ function ShopSidebar() {
     ...catNames,
   ]
 
-  function handleClick(catName, idx) {
-    catName === 'all' ? getAllShopProducts() : getCategoryProducts(catName)
+  async function handleClick(catName, idx) {
+    catName === 'all'
+      ? await getAllShopProducts()
+      : await getCategoryProducts(catName)
 
     setActive(idx)
   }
 
-  if (isProductLoading) {
+  if (isError) {
     return (
       <div className="d-flex" style={{ height: '30rem' }}>
         <p>Data cant be loaded there must be something wrong</p>

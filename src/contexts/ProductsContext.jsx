@@ -71,17 +71,17 @@ function ProductProvider({ children }) {
     }
   }, [])
 
-  async function getAllShopProducts() {
-    try {
-      setStatus('loading')
-      const data = await productServices.getAllShopProducts()
-      setProducts(data)
-      setStatus('success')
-    } catch (error) {
-      setStatus('error')
-      console.error(error.message)
-    }
-  }
+  // async function getAllShopProducts() {
+  //   try {
+  //     setStatus('loading')
+  //     const data = await productServices.getAllShopProducts()
+  //     setProducts(data)
+  //     setStatus('success')
+  //   } catch (error) {
+  //     setStatus('error')
+  //     console.error(error.message)
+  //   }
+  // }
 
   return (
     <ProductContext.Provider
@@ -90,7 +90,7 @@ function ProductProvider({ children }) {
         // categories,
         // getCategoryProducts,
         getSingleProduct,
-        getAllShopProducts,
+        // getAllShopProducts,
         singleProduct,
         setCartItems,
         cartItems,
