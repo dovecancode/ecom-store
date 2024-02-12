@@ -27,6 +27,7 @@ function ProductProvider({ children }) {
       try {
         setStatus('loading')
         const data = await productServices.getHomeProducts(8)
+
         setHomeProducts(data)
         setStatus('success')
       } catch (error) {
