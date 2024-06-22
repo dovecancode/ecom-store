@@ -1,4 +1,11 @@
-import PropTypes from 'prop-types'
+type SectionHeaderProps = {
+  headTag: number
+  headingText: string
+  subHeadingText: string
+  headingSize?: number
+  spanSize?: string
+  orientation: string
+}
 
 function SectionHeader({
   headTag = 1,
@@ -7,23 +14,15 @@ function SectionHeader({
   headingSize,
   orientation,
   spanSize = '1rem',
-}) {
-  const HeadTag = `h${headTag}`
+}: SectionHeaderProps) {
+  const HeadTag = `h${headTag}` as keyof JSX.IntrinsicElements
+
   return (
     <div className={`section-header text-${orientation}`}>
       <HeadTag className={`display-${headingSize}`}>{headingText}</HeadTag>
       <span style={{ fontSize: spanSize }}>{subHeadingText}</span>
     </div>
   )
-}
-
-SectionHeader.propTypes = {
-  headTag: PropTypes.number,
-  headingText: PropTypes.string,
-  subHeadingText: PropTypes.string,
-  headingSize: PropTypes.number,
-  spanSize: PropTypes.string,
-  orientation: PropTypes.string,
 }
 
 export default SectionHeader

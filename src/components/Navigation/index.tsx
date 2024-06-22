@@ -12,7 +12,7 @@ function Navigation() {
 
   const isBigScreen = useMediaQuery({ query: '(width >= 63em)' })
 
-  const totalCart = cartItems.reduce((acc, val) => acc + val.quantity, 0)
+  const totalCart = cartItems.reduce((acc, val) => acc + (val.quantity || 0), 0)
 
   return (
     <Navbar expand="lg" className="bg-body-tertiary ecom-nav">

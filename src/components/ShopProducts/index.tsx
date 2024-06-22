@@ -1,12 +1,11 @@
-import { Row, Stack } from 'react-bootstrap'
+import { Stack } from 'react-bootstrap'
 
+import useCategoryProducts from '../../hooks/useCategoryProducts'
 import Spinner from '../../ui/Spinner'
-
-import { useProduct } from '../../contexts/ProductsContext'
 import Product from '../Product'
 
-function NewArrivalProducts() {
-  const { homeProducts, status } = useProduct()
+function ShopProducts() {
+  const { products, status } = useCategoryProducts()
 
   const isLoading = status === 'loading'
   const error = status === 'error'
@@ -25,19 +24,15 @@ function NewArrivalProducts() {
       </div>
     )
   }
-
   return (
-    <Row>
-      {homeProducts.map((product) => (
-        <Stack
-          key={product.id}
-          className="col-12 col-sm-6 col-md-6 col-lg-3 my-5"
-        >
+    <>
+      {products.map((product) => (
+        <Stack key={product.id} className="shop-product col-12 col-lg-4 mb-4">
           <Product product={product} />
         </Stack>
       ))}
-    </Row>
+    </>
   )
 }
 
-export default NewArrivalProducts
+export default ShopProducts

@@ -1,7 +1,17 @@
-import PropTypes from 'prop-types'
 import { Badge, ListGroup } from 'react-bootstrap'
+import { CategoryNamesTypes } from '../../types'
 
-function CategoryList({ catName, catLength, onSelectCategory, isActive }) {
+type CategoryListProps = CategoryNamesTypes & {
+  onSelectCategory: () => void
+  isActive: boolean
+}
+
+function CategoryList({
+  catName,
+  catLength,
+  onSelectCategory,
+  isActive,
+}: CategoryListProps) {
   return (
     <ListGroup.Item
       active={isActive}
@@ -15,13 +25,6 @@ function CategoryList({ catName, catLength, onSelectCategory, isActive }) {
       </Badge>
     </ListGroup.Item>
   )
-}
-
-CategoryList.propTypes = {
-  catName: PropTypes.string,
-  catLength: PropTypes.number,
-  onSelectCategory: PropTypes.func,
-  isActive: PropTypes.bool,
 }
 
 export default CategoryList
