@@ -1,7 +1,12 @@
 import PropTypes from 'prop-types'
 import { FaRegStar, FaStar } from 'react-icons/fa'
 
-function StarRating({ rating }) {
+type RatingProps = {
+  rate: number
+  count: number
+}
+
+function StarRating({ rating }: { rating: RatingProps }) {
   const starCount = Array.from({ length: 5 }, (_, i) => i)
 
   return (

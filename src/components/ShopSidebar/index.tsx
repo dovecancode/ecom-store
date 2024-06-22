@@ -1,25 +1,26 @@
 import { useState } from 'react'
 import { ListGroup } from 'react-bootstrap'
-import { useProduct as getCategoryNames } from '../../contexts/ProductsContext'
+// import { useProduct as getCategoryNames } from '../../contexts/ProductsProvider'
+import useCategoryProducts from '../../hooks/useCategoryProducts'
 import CategoryList from '../CategoryList'
 
 function ShopSidebar() {
-  const { categories, status, getCategoryProducts, getAllShopProducts } =
-    getCategoryNames()
+  const { categoryNames, status, getAllShopProducts, getCategoryProducts } =
+    useCategoryProducts()
+
   const [active, setActive] = useState(-1)
 
   const newCategory = [
     {
       catName: 'all',
     },
-    ...categories,
+    ...categoryNames,
   ]
 
   const error = status === 'error'
 
-  function handleClick(catName, idx) {
+  function handleClick(catName: string, idx: number) {
     catName === 'all' ? getAllShopProducts() : getCategoryProducts(catName)
-
     setActive(idx)
   }
 

@@ -12,11 +12,10 @@ function Router() {
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<App />}>
-        <Route index="*" element={<Home />} />
+        <Route index element={<Home />} />
         <Route path="shop" element={<Shop />} />
         <Route path="cart" element={<Cart />} />
         <Route path="product/:id" element={<SingleProduct />} />
-
         <Route path="*" element={<NotFound />} />
       </Route>
     )

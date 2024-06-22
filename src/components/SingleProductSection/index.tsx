@@ -1,26 +1,22 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
-import { useParams } from 'react-router-dom'
-import { useProduct } from '../../contexts/ProductsContext'
 import useItemCart from '../../hooks/useItemCart'
+import useSingleProducts from '../../hooks/useSingleProducts'
 import Spinner from '../../ui/Spinner'
 
 function SingleProductSection() {
   const [orderCount, setOrderCount] = useState(1)
-  const { singleProduct, status, getSingleProduct } = useProduct()
+
   const { addProductToCart } = useItemCart()
-  const { id } = useParams()
 
-  useEffect(() => {
-    getSingleProduct(id)
-  }, [id, getSingleProduct])
-
-  const { title, image, description, price, category } = singleProduct
+  const { singleProduct, status } = useSingleProducts()
 
   const isLoading = status === 'loading'
 
   function handleAddCart() {
-    addProductToCart(singleProduct, orderCount)
+    if (singleProduct) {
+      addProductToCart(singleProduct, orderCount)
+    }
   }
 
   return (
@@ -33,16 +29,20 @@ function SingleProductSection() {
             <>
               <Col md={5}>
                 <div className="single-product-feature-img mb-4">
-                  <img className="img-fluid" src={image} alt="" />
+                  <img
+                    className="img-fluid"
+                    src={singleProduct?.image}
+                    alt=""
+                  />
                 </div>
               </Col>
               <Col md={7}>
                 <div className="single-product-info">
                   <div className="detail">
-                    <h1>{title}</h1>
+                    <h1>{singleProduct?.title}</h1>
                     <hr />
-                    <p className="h3">${price}</p>
-                    <p>{description}</p>
+                    <p className="h3">${singleProduct?.price}</p>
+                    <p>{singleProduct?.description}</p>
                   </div>
 
                   <div className="add-cart d-flex gap-3">
@@ -79,7 +79,9 @@ function SingleProductSection() {
                     </Button>
                   </div>
 
-                  <p className="lead mt-4">Category: {category}</p>
+                  <p className="lead mt-4">
+                    Category: {singleProduct?.category}
+                  </p>
                 </div>
               </Col>
             </>

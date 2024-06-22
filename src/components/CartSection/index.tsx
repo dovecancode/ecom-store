@@ -9,31 +9,35 @@ import {
 } from 'react-bootstrap'
 import { FaRegTrashAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import { useProduct } from '../../contexts/ProductsContext'
+
 import useItemCart from '../../hooks/useItemCart'
+import { ProductTypes } from '../../types'
 
 function CartSection() {
-  const { addProductToCart, removeProductFromCart, deleteItemFromCart } =
-    useItemCart()
-  const { cartItems } = useProduct()
+  const {
+    cartItems,
+    addProductToCart,
+    removeProductFromCart,
+    deleteItemFromCart,
+  } = useItemCart()
 
   // event to addtocart and increasing it
-  function handleAddToCart(cart) {
+  function handleAddToCart(cart: ProductTypes) {
     addProductToCart(cart)
   }
 
   // event to decrease the cart order and eventually delete it when it goes to 0
-  function handleRemoveFromCart(cart) {
+  function handleRemoveFromCart(cart: ProductTypes) {
     removeProductFromCart(cart)
   }
 
   // event to delete the item from cart when trash icon click
-  function handleDeleteItem(cart) {
+  function handleDeleteItem(cart: ProductTypes) {
     deleteItemFromCart(cart)
   }
 
   const itemTotalAmout = cartItems.reduce(
-    (acc, item) => acc + item.price * item.quantity,
+    (acc, item) => acc + Number(item.price) * Number(item.quantity),
     0
   )
 
@@ -62,7 +66,9 @@ function CartSection() {
                     </thead>
                     <tbody>
                       {cartItems.map((cart) => {
-                        const totalPricePerProduct = cart.quantity * cart.price
+                        const totalPricePerProduct = cart.quantity
+                          ? cart.quantity * Number(cart.price)
+                          : 0
                         return (
                           <tr key={cart.id}>
                             <td className="text-center">

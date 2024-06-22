@@ -5,10 +5,11 @@ import { IoMdCart } from 'react-icons/io'
 import { Badge } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import useItemCart from '../../hooks/useItemCart'
+import { ProductTypes } from '../../types'
 import StarRating from '../StarRating'
 import styles from './style.module.css'
 
-function Product({ product }) {
+function Product({ product }: { product: ProductTypes }) {
   const { addProductToCart, cartItems } = useItemCart()
 
   function handleClick() {
@@ -53,7 +54,7 @@ function Product({ product }) {
           className={`${styles['add-to-cart-btn']} position-absolute`}
           onClick={(e) => {
             e.preventDefault()
-            handleClick(product)
+            handleClick()
           }}
         >
           <IoMdCart size={30} color="#fff" />
