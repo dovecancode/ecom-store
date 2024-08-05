@@ -16,7 +16,3 @@ export type ProductTypes = {
     count: number
   }
 }
-
-// export type CartItemTypes = ProductTypes & {
-//   quantity?: number
-// }
