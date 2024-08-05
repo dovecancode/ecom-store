@@ -1,11 +1,23 @@
 import { useState } from 'react'
 import { Button, Col, Container, Form, InputGroup, Row } from 'react-bootstrap'
+import { useParams } from 'react-router-dom'
+import {
+  ProductContenxtType,
+  useProduct,
+} from '../../contexts/ProductsProvider'
 import useItemCart from '../../hooks/useItemCart'
 import useSingleProducts from '../../hooks/useSingleProducts'
 import Spinner from '../../ui/Spinner'
 
 function SingleProductSection() {
   const [orderCount, setOrderCount] = useState(1)
+  let { id } = useParams()
+
+  const { cartItems } = useProduct() as ProductContenxtType
+
+  const quantity =
+    cartItems.length > 0 &&
+    cartItems.find((item) => item.id === Number(id))?.quantity
 
   const { addProductToCart } = useItemCart()
 
@@ -74,6 +86,7 @@ function SingleProductSection() {
                       variant="dark"
                       size="sm"
                       onClick={handleAddCart}
+                      disabled={quantity && quantity > 0 ? true : false}
                     >
                       Add to Cart
                     </Button>
