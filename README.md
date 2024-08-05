@@ -9,3 +9,7 @@ Features:
 - **Responsive Design**: Mobile-friendly design ensuring optimal usability across all devices.
 
 - **Product Details**: Comprehensive product detail pages with high-quality images, descriptions, and pricing information.
+
+### Tech Stack
+
+ReactJS, ContextAPI, TypeScript, Bootstrap, Axios
